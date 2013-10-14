@@ -6,13 +6,9 @@
 
 %{{{ Packages
 \usepackage{tikz}
-\usepackage{pgfplots}
 \usepackage{xltxtra}
-\usepackage{listings}
-\usepackage{framed}
 \usepackage{csquotes}
 \usepackage{hyperref}
-\usepackage{caption}
 \usepackage[framemethod=tikz]{mdframed}
 %}}}
 %{{{ Fonts and colors
@@ -57,27 +53,24 @@
 
 \makeatletter
 \tikzset{
-circle split part fill/.style  args={#1,#2}{%
- alias=tmp@name, % Jake's idea !!
-  postaction={%
-    insert path={
-     \pgfextra{%
-     \pgfpointdiff{\pgfpointanchor{\pgf@node@name}{center}}%
-                  {\pgfpointanchor{\pgf@node@name}{east}}%
-     \pgfmathsetmacro\insiderad{\pgf@x}
+  circle split part fill/.style  args={#1,#2}{%
+    alias=tmp@name, % Jake's idea !!
+    postaction={%
+      insert path={
+        \pgfextra{%
+          \pgfpointdiff{\pgfpointanchor{\pgf@node@name}{center}}%
+                       {\pgfpointanchor{\pgf@node@name}{east}}%
+          \pgfmathsetmacro\insiderad{\pgf@x}
           \fill[#1] (\pgf@node@name.base) ([xshift=-\pgflinewidth]\pgf@node@name.east) arc
-                          (0:180:\insiderad-\pgflinewidth)--cycle;
-      \fill[#2] (\pgf@node@name.base) ([xshift=\pgflinewidth]\pgf@node@name.west)  arc
-                           (180:360:\insiderad-\pgflinewidth)--cycle;
-         }}}}
+                            (0:180:\insiderad-\pgflinewidth)--cycle;
+          \fill[#2] (\pgf@node@name.base) ([xshift=\pgflinewidth]\pgf@node@name.west)  arc
+                            (180:360:\insiderad-\pgflinewidth)--cycle;
+        }
+      }
+    }
+  }
 }
 \makeatother
-%}}}
-%{{{ Lstlisting
-\lstset{
-  language=sh,
-  basicstyle=\ttfamily\LARGE
-}
 %}}}
 %{{{ Environments
 \makeatletter
