@@ -79,14 +79,12 @@
   skipabove=\topsep,
   skipbelow=\topsep,
   font=\ttfamily,
-  linecolor=KITblack15,
-  backgroundcolor=KITblack15,
-  leftmargin=6pt,
-  rightmargin=6pt,
+  linecolor=black!9,
+  backgroundcolor=black!9,
   innertopmargin=6pt,
   innerbottommargin=6pt,
-  innerleftmargin=12pt,
-  innerrightmargin=12pt,
+  innerleftmargin=6pt,
+  innerrightmargin=6pt,
   userdefinedwidth=#1]}
   {\end{mdframed}}
 \makeatother
@@ -145,9 +143,13 @@
   \end{itemize}
 \end{frame}
 \begin{frame}{Version control to the rescue}
-  You want a history of changes, you want to go back, you want to have it backed
-  up and saved somewhere save, you want others collaborate with you
-  \emph{easily}
+  Version controlled repository allow you to
+  \begin{itemize}
+    \item \emph{Track} files
+    \item \emph{Commit} changes
+    \item Share changes with others
+    \item Roll-back to an earlier state
+  \end{itemize}
 \end{frame}
 
 \section{Distributed Version Control}
@@ -155,38 +157,69 @@
 \begin{frame}{Distributed version control}
   \begin{block}{What's wrong with CVS/SVN/\ldots?}
     \begin{itemize}
-      \item Nothing per se
+      \item Nothing per se but\ldots
+      \item They require a central server instance
+        \begin{itemize}
+          \item Interaction with a repository can be painfully slow
+          \item Setup and maintenance issues
+        \end{itemize}
     \end{itemize}
   \end{block}
 
   \begin{block}{How can DVCS help?}
     \begin{itemize}
-      \item Easier setup
-      \item Simpler collaboration
+      \item Every developer has a clone of the \emph{full} repository
+        \begin{itemize}
+          \item Blazingly fast operations
+          \item Without a server, working offline becomes possible
+          \item Easier initial setup
+        \end{itemize}
+      \item DVCS are built around the idea of sharing
+        \begin{itemize}
+          \item Easier branching
+          \item Usually easier merging
+        \end{itemize}
     \end{itemize}
   \end{block}
 \end{frame}
-\begin{frame}{Tools}
+\begin{frame}{Distributed version control \emph{systems}}
   Mercurial, Bazaar, SVK, Monotone, BitKeeper, \textbf{Git}, Darcs, Fossil, GNU
   arch, Arx, Plastic SCM
 \end{frame}
 \begin{frame}{Why Git?}
-  \begin{block}{Pros}
-    \begin{itemize}
-      \item De-facto standard for open source software
-      \item SourceForge lost its sex appeal against GitHub
-    \end{itemize}
-  \end{block}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+      \begin{block}{Pros}
+        \begin{itemize}
+          \item De-facto standard for open source software
+          \item Probably the fastest DVCS out there
+          \item SourceForge lost its sex appeal against GitHub
+        \end{itemize}
 
-  \begin{block}{Cons}
-    \begin{itemize}
-      \item Command line interface feels
-      \item Git is a toolbox \emph{not} a full-fledged product
-    \end{itemize}
-  \end{block}
+      \end{block}
+
+      \begin{block}{Cons}
+        \begin{itemize}
+          \item Command line interface feels can be a bit inconsistent
+          \item Git is a toolbox with much freedom and little limits
+        \end{itemize}
+      \end{block}
+    \column{0.5\textwidth}
+      \centering
+      \includegraphics[width=4.0cm]{images/sf.png}
+      \vspace{1em}
+      \includegraphics[width=4.0cm]{images/github.png}
+  \end{columns}
 \end{frame}
 
 \section{Hands-on introduction}
+
+\begin{frame}{}
+  \begin{center}
+    \huge\bfseries
+    \textcolor{KITblack50}{Git basics}
+  \end{center}
+\end{frame}
 
 \begin{frame}{Getting started}
   \begin{block}{Installation}
@@ -199,16 +232,6 @@
       \item Windows: install from \url{http://git-scm.com/download/win}
     \end{itemize}
   \end{block}
-\end{frame}
-\begin{frame}{Basic idea of Git}
-  \begin{itemize}
-    \item Each artifact and modification to it is stored in a
-    \emph{repository}
-    \item After a series of changes, the then-current state is \emph{committed}
-      to the repository
-    \item All committed changes form a linear history except for where branches
-      diverge
-  \end{itemize}
 \end{frame}
 \begin{frame}{Creating a new repository}
   In the working directory of your project, type
@@ -379,6 +402,13 @@
 \end{frame}
 
 \section{Advanced Git features}
+
+\begin{frame}{}
+  \begin{center}
+    \huge\bfseries
+    \textcolor{KITblack50}{Advanced Git}
+  \end{center}
+\end{frame}
 
 \begin{frame}{Manipulating the Git object database}
   If you collaborate heavily with your peers, you'll want to have a
