@@ -471,29 +471,40 @@
 \begin{frame}{Rebasing branches}
   \begin{columns}[onlytextwidth]
     \column{0.7\textwidth}
-    Avoid this by rebasing one branch on top of the other and fast-forward the
-    merging with
-      \begin{shell}
-        \$ git checkout some-feature\\
-        \$ git rebase master\\
-        \$ git checkout master\\
-        \$ git merge some-feature
-      \end{shell}
+    This can be reduced by rebasing one branch on top of the other
+    \begin{shell}
+      \$ git checkout some-feature\\
+      \visible<2->{\$ git rebase master}
+    \end{shell}
+    \visible<3->{No merge commit, clean history.}
 
     \column{0.3\textwidth}
       \centering
       \begin{tikzpicture}
-        \node[commit, circle, draw] (root) at (0,0) {};
-        \node[commit] (c1) at (0,1.5) {};
-        \node[commit] (b1) at (1,1) {};
-        \node[commit] (b2) at (1,2) {};
-        \node[commit] (c2) at (0,3) {};
 
-        \draw (root.north) edge[connection, out=90, in=270] (b1.south);
-        \draw (b2.north) edge[connection, out=90, in=270] (c2.south);
         \draw[connection] (root) -- (c1);
-        \draw[connection] (c1) -- (c2);
         \draw[connection] (b1) -- (b2);
+
+        \visible<1>{
+          \node[commit, circle, draw] (root) at (0,0) {};
+          \node[commit] (c1) at (0,1.5) {};
+          \node[commit] (c2) at (0,3) {};
+          \node[commit, fill=syntax-number] (b1) at (1,1) {};
+          \node[commit, fill=syntax-green!50] (b2) at (1,2) {};
+
+          \draw[connection] (c1) -- (c2);
+          \draw (root.north) edge[connection, out=90, in=270] (b1.south);
+          \draw (b2.north) edge[connection, out=90, in=270] (c2.south);
+        }
+
+        \visible<2->{
+          \node[commit, circle, draw] (root) at (0,0) {};
+          \node[commit] (c1) at (0,1) {};
+          \node[commit, fill=syntax-number] (b1) at (1,2) {};
+          \node[commit, fill=syntax-green!50] (b2) at (1,3) {};
+          \draw (c1.north) edge [connection, out=90, in=270] (b1.south);
+        }
+
       \end{tikzpicture}
   \end{columns}
 \end{frame}
