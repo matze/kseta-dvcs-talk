@@ -357,13 +357,12 @@
       }
 
       \visible<3->{
-        \begin{block}{Removing branches}
+        \vspace{1em}
         If merging was successful, the old branch can be removed
 
         \begin{shell}
           \$ git branch -D fancy-idea
         \end{shell}
-        \end{block}
       }
 
     \column{0.3\textwidth}
@@ -389,9 +388,26 @@
 \begin{frame}{Collaborating with others}
   \begin{itemize}
     \item Until now, everything happened on our local machine
-    \item To let others see you changes, you must setup a \emph{remote} and
-      associate a local branch with a remote branch
+    \item To share changes with others you can
+      \begin{itemize}
+        \item Send patches
+        \item Let them \emph{pull} from your on-disk repository
+        \item Setup a \emph{remote} and \emph{push} your changes
+      \end{itemize}
   \end{itemize}
+\end{frame}
+\begin{frame}{Remote repositories}
+  \begin{block}{Cloning repositories}
+    \begin{shell}
+      \$ git clone https://foo.server.com/foo.git
+    \end{shell}
+  \end{block}
+
+  \begin{block}{Adding additional repositories}
+    \begin{shell}
+      \$ git remote add foo https://foo.server.com/foo.git
+    \end{shell}
+  \end{block}
 \end{frame}
 \begin{frame}{Git best practices}
   \begin{itemize}
@@ -406,7 +422,7 @@
 \begin{frame}{}
   \begin{center}
     \huge\bfseries
-    \textcolor{KITblack50}{Advanced Git}
+    \textcolor{KITblack50}{Advanced Git operations}
   \end{center}
 \end{frame}
 
@@ -419,21 +435,44 @@
     \item One commit per logical change
     \item A series of commits leading to a bigger change
   \end{itemize}
+\end{frame}
+\begin{frame}{Fixing the last commit}
+  \begin{block}{Change author and message}
+    \begin{shell}
+      \$ git commit --amend
+    \end{shell}
+  \end{block}
+\end{frame}
+\begin{frame}{Picking cherries}
+  \begin{block}{Pull individual commits into a branch}
+    \begin{shell}
+      \$ git cherry-pick f023bac
+    \end{shell}
+  \end{block}
+\end{frame}
+\begin{frame}{Partial staging}
+  \begin{block}{Staging only relevant parts of a change}
+    \begin{shell}
+      git add -p/--patch
+    \end{shell}
+  \end{block}
+\end{frame}
+\begin{frame}{Merge bubbles}
+  Merging branches that developed independently can end up nasty \ldots
 
-  But: \emph{never} rewrite the history of changes that are already published or
-  the Git gods will bring sorrow
+  \begin{figure}
+    \centering
+    \includegraphics[width=8cm]{images/wide-gitk}
+    \caption{\enquote{Successful} octopus merge.}
+  \end{figure}
+  \vfill
+  {\footnotesize Image from: \url{http://blog.spearce.org/2007/07/difficult-gitk-graphs.html}}
 \end{frame}
-\begin{frame}{Fixing commit messages}
-  \begin{shell}
-    \$ git commit --amend
-  \end{shell}
-\end{frame}
-\begin{frame}{Avoiding merge bubbles}
+\begin{frame}{Rebasing branches}
   \begin{columns}[onlytextwidth]
     \column{0.7\textwidth}
-    When merging two branches that developed individually, you'll end up with a
-    merge commit. You can avoid this situation by rebasing one branch on top of
-    the other and fast-forward the merging with
+    Avoid this by rebasing one branch on top of the other and fast-forward the
+    merging with
       \begin{shell}
         \$ git checkout some-feature\\
         \$ git rebase master\\
@@ -457,14 +496,6 @@
         \draw[connection] (b1) -- (b2);
       \end{tikzpicture}
   \end{columns}
-\end{frame}
-\begin{frame}{Partial staging}
-  Sometimes, you made changes that are logically two different entities.
-  However, good Git citizens have a clean history, so use:
-
-  \begin{shell}
-    git add -p/--patch
-  \end{shell}
 \end{frame}
 \begin{frame}{Re-writing the history}
   \begin{columns}[onlytextwidth]
