@@ -409,7 +409,9 @@ Although files are tracked, they have to be staged for committing
 \begin{frame}{Best practices}
   \begin{itemize}
     \item Write descriptive commit messages and keep 50/70 limits
-    \item Think twice before running \texttt{git commit -a}
+    \item Check the status before committing
+    \item Think twice before running
+      \begin{shell}\$ git commit -a\end{shell}
   \end{itemize}
 \end{frame}
 
@@ -449,6 +451,15 @@ Although files are tracked, they have to be staged for committing
   \begin{block}{Staging only relevant parts of a change}
     \begin{shell}
       git add -p/--patch
+    \end{shell}
+  \end{block}
+\end{frame}
+\begin{frame}{Stash intermediate changes away}
+  \begin{block}{Cleaning the working directory temporarily}
+    \begin{shell}
+      \$ git stash "Descriptive message"\\
+      \$ ... do something else\\
+      \$ git stash pop
     \end{shell}
   \end{block}
 \end{frame}
