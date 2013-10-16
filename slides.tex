@@ -143,7 +143,7 @@
   \end{itemize}
 \end{frame}
 \begin{frame}{Version control to the rescue}
-  Version controlled repository allow you to
+  A version controlled repository allows you to
   \begin{itemize}
     \item \emph{Track} files
     \item \emph{Commit} changes
@@ -154,32 +154,28 @@
 
 \section{Distributed Version Control}
 
+\begin{frame}{Problems with centralized version control}
+  \begin{itemize}
+    \item CVCSs require a central server instance
+    \item Interaction with a repository can be painfully slow
+    \item Setup and maintenance issues
+    \item Collaborating requires a lot of effort
+  \end{itemize}
+\end{frame}
 \begin{frame}{Distributed version control}
-  \begin{block}{What's wrong with CVS/SVN/\ldots?}
+  \begin{block}{Cloned repositories}
     \begin{itemize}
-      \item Nothing per se but\ldots
-      \item They require a central server instance
-        \begin{itemize}
-          \item Interaction with a repository can be painfully slow
-          \item Setup and maintenance issues
-        \end{itemize}
+      \item Local initial setup
+      \item Blazingly fast operations
+      \item \enquote{Airplane programming}
     \end{itemize}
   \end{block}
-
-  \begin{block}{How can DVCS help?}
-    \begin{itemize}
-      \item Every developer has a clone of the \emph{full} repository
-        \begin{itemize}
-          \item Blazingly fast operations
-          \item Without a server, working offline becomes possible
-          \item Easier initial setup
-        \end{itemize}
-      \item DVCS are built around the idea of sharing
-        \begin{itemize}
-          \item Easier branching
-          \item Usually easier merging
-        \end{itemize}
-    \end{itemize}
+  \begin{block}{Sharing is an inherent feature}
+    \item DVCS are built around the idea of sharing
+      \begin{itemize}
+        \item Easy branching
+        \item Easy merging of changes between peers
+      \end{itemize}
   \end{block}
 \end{frame}
 \begin{frame}{Distributed version control \emph{systems}}
