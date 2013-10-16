@@ -406,10 +406,9 @@ Although files are tracked, they have to be staged for committing
     \end{shell}
   \end{block}
 \end{frame}
-\begin{frame}{Git best practices}
+\begin{frame}{Best practices}
   \begin{itemize}
-    \item Write good commit messages and keep 50/70 limits
-    \item Rebase feature branches against master before merging
+    \item Write descriptive commit messages and keep 50/70 limits
     \item Think twice before running \texttt{git commit -a}
   \end{itemize}
 \end{frame}
@@ -422,7 +421,6 @@ Although files are tracked, they have to be staged for committing
     \textcolor{KITblack50}{Advanced Git operations}
   \end{center}
 \end{frame}
-
 \begin{frame}{Manipulating the Git object database}
   If you collaborate heavily with your peers, you'll want to have a
   \enquote{clean} history of changes, e.g.
@@ -567,6 +565,14 @@ Although files are tracked, they have to be staged for committing
       \end{tikzpicture}
   \end{columns}
 \end{frame}
+\begin{frame}{Best practices}
+  \begin{itemize}
+    \item Keep a clean history by re-writing the history of your local branch
+    \item Never, ever re-write the history of a public branch (Once pushed,
+      a change is sacred)
+  \end{itemize}
+\end{frame}
+
 
 \section{Beyond Source Control}
 
@@ -666,11 +672,13 @@ Although files are tracked, they have to be staged for committing
       \includegraphics[width=3cm]{images/gcs}
   \end{columns}
 \end{frame}
-
 \begin{frame}{Conclusion}
   \begin{itemize}
     \item Use a distributed version control system, it \emph{will} help
-    \item Clone these slides from \url{github.com/matze/kseta-dvsc-talk}
+    \item Start now, and clone these slides from
+      \begin{center}
+        \url{github.com/matze/kseta-dvsc-talk}
+      \end{center}
   \end{itemize}
 \end{frame}
 
