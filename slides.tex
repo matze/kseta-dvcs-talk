@@ -98,7 +98,7 @@
 
 \graphicspath{{../../common/}}
 
-% \KITtitleimage{background.jpg}
+\TitleImage[width=6.5cm]{images/git-icon}
 %}}}
 
 %}}}
@@ -300,14 +300,6 @@ Although files are tracked, they have to be staged for committing
       }
 
       \visible<3->{
-        Once, committed you can switch back and forth
-        \begin{shell}
-          \$ git checkout master\\
-          \$ git commit \ldots
-        \end{shell}
-      }
-
-      \visible<4->{
         Branches are cheap, so don't bother creating as many as you like.
       }
 
@@ -405,6 +397,11 @@ Although files are tracked, they have to be staged for committing
       \$ git push [<remote> <local-branch>:<remote-branch>]
     \end{shell}
   \end{block}
+\end{frame}
+\begin{frame}{Hosting repositories}
+  \begin{itemize}
+    \item File-based
+  \end{itemize}
 \end{frame}
 \begin{frame}{Best practices}
   \begin{itemize}
@@ -555,7 +552,6 @@ Although files are tracked, they have to be staged for committing
         \visible<3->{
           \node[commit, fill=syntax-green!50] (c2) at (0,1) {};
           \node[commit, fill=syntax-number] (c3) at (0,2) {};
-          \path[connection, opacity=0.5] (c2.west) edge [bend left] (c3.west);
         }
 
         % Squash commits
