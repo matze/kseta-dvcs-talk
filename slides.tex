@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{xltxtra}
 \usepackage{csquotes}
+\usepackage{caption}
 \usepackage{hyperref}
 \usepackage[framemethod=tikz]{mdframed}
 %}}}
@@ -136,45 +137,58 @@
 \end{frame}
 \begin{frame}{Obvious disadvantages}
   \begin{itemize}
-    \item You lose track of what's going on
     \item No meta data about \emph{what} was changed \emph{when} by
       \emph{whom}
+    \item You lose track of what's going on
+    \item You cannot roll-back to a working state
     \item Poor solution for collaboration
   \end{itemize}
 \end{frame}
-\begin{frame}{Version control to the rescue}
-  A version controlled repository allows you to
-  \begin{itemize}
-    \item \emph{Track} files
-    \item \emph{Commit} changes
-    \item Share changes with others
-    \item Roll-back to an earlier state
-  \end{itemize}
+\begin{frame}{Version control}
+  \begin{block}{Benefits}
+    \begin{itemize}
+      \item \emph{Track} files
+      \item Record (\emph{commit}) changes
+      \item Share changes with others
+      \item Roll-back to an earlier state
+    \end{itemize}
+  \end{block}
 \end{frame}
 
 \section{Distributed Version Control}
 
-\begin{frame}{Problems with centralized version control}
-  \begin{itemize}
-    \item CVCSs require a central server instance
-    \item Interaction with a repository can be painfully slow
-    \item Setup and maintenance issues
-    \item Collaborating requires a lot of effort
-  \end{itemize}
+\begin{frame}{Centralized version control systems}
+  \begin{block}{Implementations}
+    \begin{itemize}
+      \item File-based: RCS
+      \item Client-Server architecture: CVS, SVN, \ldots
+    \end{itemize}
+  \end{block}
+
+  \pause
+
+  \begin{block}{Problems}
+    \begin{itemize}
+      \item Centralized systems require a server
+      \item Interaction with a repository can be painfully slow
+      \item Setup and maintenance issues
+      \item Collaborating requires a lot of effort
+    \end{itemize}
+  \end{block}
 \end{frame}
 \begin{frame}{Distributed version control}
   \begin{block}{Cloned repositories}
     \begin{itemize}
-      \item Local initial setup
+      \item Local setup
       \item Blazingly fast operations
-      \item \enquote{Airplane programming}
+      \item \enquote{Airplane coding}
     \end{itemize}
   \end{block}
   \begin{block}{Sharing is an inherent feature}
     \begin{itemize}
       \item DVCS are built around the idea of sharing
-      \item Easy branching
-      \item Easy merging of changes between peers
+      \item Cryptographic hashing of content assures integrity
+      \item Easy branching and merging of changes between peers
     \end{itemize}
   \end{block}
 \end{frame}
@@ -233,14 +247,9 @@
     \$ git init
   \end{shell}
 \end{frame}
-\begin{frame}{What' going on?}
-  \begin{shell}
-    \$ git status
-  \end{shell}
-\end{frame}
 \begin{frame}{Tracking files}
   \begin{shell}
-    \$ git add
+    \$ git add <path>
   \end{shell}
 \end{frame}
 \begin{frame}{Committing changes}
@@ -254,8 +263,13 @@
     \caption{from Scott Schacon's \enquote{Pro Git} CC-BY-NC-SA 3.0}
   \end{figure}
 \end{frame}
+\begin{frame}{Checking the status}
+  \begin{shell}
+    \$ git status
+  \end{shell}
+\end{frame}
 \begin{frame}{Staging changes}
-Although files are tracked, they have to be staged for committing
+So, before committing you have to stage a file
   \begin{shell}
 \$ vi paper.tex\\
 \$ git add paper.tex\\
@@ -267,9 +281,11 @@ Although files are tracked, they have to be staged for committing
   \end{shell}
 \end{frame}
 \begin{frame}{Visualizing the history}
-  \begin{shell}
-    \$ git log
-  \end{shell}
+  \begin{block}{For a quick look}
+    \begin{shell}
+      \$ git log
+    \end{shell}
+  \end{block}
 
   \begin{block}{GUIs}
     \begin{itemize}
@@ -327,7 +343,8 @@ Although files are tracked, they have to be staged for committing
 \begin{frame}{Merging changes}
   \begin{columns}[onlytextwidth]
     \column{0.7\textwidth}
-      If your changes are ready for prime time, merge them into your master branch:
+      If your changes are ready for prime time, merge them into your master
+      branch:
 
       \visible<2->{
         \begin{shell}
@@ -335,7 +352,7 @@ Although files are tracked, they have to be staged for committing
           \$ git merge fancy-idea
         \end{shell}
 
-        In this case, a \emph{merge commit} will be created.
+        In this particular case, a \emph{merge commit} will be created.
       }
 
       \visible<3->{
@@ -376,12 +393,14 @@ Although files are tracked, they have to be staged for committing
         \item \emph{pull} from a remote repository
         \item \emph{push} from a remote repository
       \end{itemize}
+    \item Remotes does not have to be a single server instance
+    \item Different workflows can be easily modeled
   \end{itemize}
 \end{frame}
 \begin{frame}{Remote repositories}
   \begin{block}{Cloning repositories}
     \begin{shell}
-      \$ git clone {file,ssh,https}://foo.server.com/foo.git
+      \$ git clone \{file,ssh,https\}://foo.server.com/foo.git
     \end{shell}
   \end{block}
 
@@ -400,7 +419,10 @@ Although files are tracked, they have to be staged for committing
 \end{frame}
 \begin{frame}{Hosting repositories}
   \begin{itemize}
-    \item File-based
+    \item Some directory on a file share such as NFS
+    \item Simple SSH-based access or Gitolite
+    \item Third-party provider, e.g. GitHub, Bitbucket, Google Code,
+      SourceForge\ldots
   \end{itemize}
 \end{frame}
 \begin{frame}{Best practices}
@@ -647,9 +669,6 @@ Although files are tracked, they have to be staged for committing
 \end{frame}
 \begin{frame}{Text-based slides}
   \begin{block}{git-slides}
-    \begin{center}
-      \includegraphics[width=5cm]{images/git-slides}
-    \end{center}
     \begin{description}
       \item[what] git-slides (together with Vim)
       \item[where] \url{github.com/gelisam/git-slides}
@@ -665,7 +684,7 @@ Although files are tracked, they have to be staged for committing
   \begin{columns}[T,onlytextwidth]
     \column{0.7\textwidth}
       \begin{itemize}
-        \item \texttt{\$ man git} \ldots just kidding
+        \item \texttt{\$ man git} \ldots\  just kidding
         \item Free Pro Git book at \url{git-scm.com/book}
         \item Different aspects from beginners to pros: \url{gitready.com}
         \item Git cheat sheet: \url{ndpsoftware.com/git-cheatsheet.html}
@@ -679,14 +698,16 @@ Although files are tracked, they have to be staged for committing
       \includegraphics[width=3cm]{images/gcs}
   \end{columns}
 \end{frame}
-\begin{frame}{Conclusion}
-  \begin{itemize}
-    \item Use a distributed version control system, it \emph{will} help
-    \item Start now, and clone these slides from
-      \begin{center}
-        \url{github.com/matze/kseta-dvsc-talk}
-      \end{center}
-  \end{itemize}
+\begin{frame}{}
+  \vfill
+  \begin{center}
+    \huge\bfseries
+    \textcolor{KITblack50}{Thanks for your attention!}
+  \end{center}
+
+  \vfill
+  Get these slides from: \url{github.com/matze/kseta-dvsc-talk}\\
+  Title logo by Jason Long licensed under CC-BY-3.0
 \end{frame}
 
 \end{document}
