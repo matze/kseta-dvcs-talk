@@ -171,11 +171,11 @@
     \end{itemize}
   \end{block}
   \begin{block}{Sharing is an inherent feature}
-    \item DVCS are built around the idea of sharing
-      \begin{itemize}
-        \item Easy branching
-        \item Easy merging of changes between peers
-      \end{itemize}
+    \begin{itemize}
+      \item DVCS are built around the idea of sharing
+      \item Easy branching
+      \item Easy merging of changes between peers
+    \end{itemize}
   \end{block}
 \end{frame}
 \begin{frame}{Distributed version control \emph{systems}}
@@ -189,14 +189,13 @@
         \begin{itemize}
           \item De-facto standard for open source software
           \item Probably the fastest DVCS out there
-          \item SourceForge lost its sex appeal against GitHub
+          \item GitHub has more sex appeal than sf.net
         \end{itemize}
-
       \end{block}
 
       \begin{block}{Cons}
         \begin{itemize}
-          \item Command line interface feels can be a bit inconsistent
+          \item Command line interface can be a bit inconsistent
           \item Git is a toolbox with much freedom and little limits
         \end{itemize}
       \end{block}
@@ -216,7 +215,6 @@
     \textcolor{KITblack50}{Git basics}
   \end{center}
 \end{frame}
-
 \begin{frame}{Getting started}
   \begin{block}{Installation}
     \begin{itemize}
@@ -234,14 +232,6 @@
   \begin{shell}
     \$ git init
   \end{shell}
-  \begin{block}{No server?}
-    \begin{itemize}
-      \item \emph{Everything} is stored locally in the hidden \texttt{.git}
-        sub-directory
-      \item Synchronizing changes with a remote location happens in a separate
-        step
-    \end{itemize}
-  \end{block}
 \end{frame}
 \begin{frame}{What' going on?}
   \begin{shell}
@@ -258,8 +248,14 @@
     \$ git commit
   \end{shell}
 \end{frame}
-\begin{frame}{Recording changes}
-  At some point changes need to be \emph{staged} and \emph{committed}
+\begin{frame}{Excursion: File states}
+  \begin{figure}
+    \includegraphics[width=9cm]{images/files}
+    \caption{from Scott Schacon's \enquote{Pro Git} CC-BY-NC-SA 3.0}
+  \end{figure}
+\end{frame}
+\begin{frame}{Staging changes}
+Although files are tracked, they have to be staged for committing
   \begin{shell}
 \$ vi paper.tex\\
 \$ git add paper.tex\\
@@ -270,27 +266,25 @@
     \$ git commit -a
   \end{shell}
 \end{frame}
-\begin{frame}{Excursion: File states}
-  \begin{figure}
-    \includegraphics[width=9cm]{images/files}
-    \caption{from Scott Schacon's \enquote{Pro Git} CC-BY-NC-SA 3.0}
-  \end{figure}
-\end{frame}
-\begin{frame}{Logged information}
-  To see the most recent changes in a pager, use
-
+\begin{frame}{Visualizing the history}
   \begin{shell}
     \$ git log
   \end{shell}
 
-  \begin{block}{GUIs for the faint-hearted}
-    Have a look at gitg, gitk, giggle, tig \ldots
+  \begin{block}{GUIs}
+    \begin{itemize}
+      \item gitg
+      \item gitk
+      \item giggle
+      \item tig
+      \item \ldots
+    \end{itemize}
   \end{block}
 \end{frame}
 \begin{frame}{Branches}
   \begin{columns}[onlytextwidth]
     \column{0.7\textwidth}
-      If you want to explore an idea without messing with your pristine
+      To explore an idea without messing with the
       original work, you can create a branch off of it \ldots
 
       \begin{shell}
@@ -387,21 +381,28 @@
     \item To share changes with others you can
       \begin{itemize}
         \item Send patches
-        \item Let them \emph{pull} from your on-disk repository
-        \item Setup a \emph{remote} and \emph{push} your changes
+        \item \emph{pull} from a remote repository
+        \item \emph{push} from a remote repository
       \end{itemize}
   \end{itemize}
 \end{frame}
 \begin{frame}{Remote repositories}
   \begin{block}{Cloning repositories}
     \begin{shell}
-      \$ git clone https://foo.server.com/foo.git
+      \$ git clone {file,ssh,https}://foo.server.com/foo.git
     \end{shell}
   \end{block}
 
   \begin{block}{Adding additional repositories}
     \begin{shell}
       \$ git remote add foo https://foo.server.com/foo.git
+    \end{shell}
+  \end{block}
+
+  \begin{block}{Syncing changes}
+    \begin{shell}
+      \$ git pull [<remote> <branch>]\\
+      \$ git push [<remote> <local-branch>:<remote-branch>]
     \end{shell}
   \end{block}
 \end{frame}
